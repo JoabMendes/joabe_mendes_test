@@ -5,8 +5,4 @@ python:
 install:
 - pip install -r requirements.txt
 script:
-- cd question_a
-- ./run_test.sh
-- cd ..
-- cd question_c
 - ./run_test.sh
