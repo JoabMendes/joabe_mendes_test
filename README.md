@@ -8,7 +8,7 @@
 - [Question C](https://github.com/JoabMendes/joabe_mendes_test/tree/master/question_c)
 
 
-Click [here](https://gist.github.com/JoabMendes/34774f7e9068538e08cf82cc620471e4) to view the question descriptions.
+Click [here](https://gist.github.com/JoabMendes/34774f7e9068538e08cf82cc620471e4) to view the questions.
 
 #### Requirements:
 
