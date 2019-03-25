@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-python -m unittest geo_lru_cache_test
+echo "======== Testing Question C ==========="
+
+python -m unittest test_lru_cache
 flake8
