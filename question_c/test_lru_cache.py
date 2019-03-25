@@ -7,10 +7,6 @@ import os
 
 class CustomLRUCacheTest(unittest.TestCase):
 
-    def setUp(self):
-        # Always clear the cache before every test
-        pass
-
     def test_lru_cache_with_timeout(self):
         @lru_cache(timeout=5)
         def random_function(x):
