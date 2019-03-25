@@ -22,7 +22,7 @@ $ pip install -r requirements.txt
 
 #### Execute tests for all questions
 
-```python
+```bash
 # On the activated environment
 $ ./run_tests.sh
 ```
