@@ -2,12 +2,12 @@
 
 ## Question C 
 
-Knowing that Python 3.3 has a [LRU Cache decorator](https://docs.python.org/3/library/functools.html#functools.lru_cache) alrery implemented, 
+Knowing that Python 3.3 has a [LRU Cache decorator](https://docs.python.org/3/library/functools.html#functools.lru_cache) already implemented, 
 I decided to create a backport version of that library, using this [recipe](http://code.activestate.com/recipes/578078/) as stating point.
 
 This decorator provides a simple integration, with a dynamic api and thread safety.
 
-The referenced recipe and the default implementation of the @functools.lru_cache don't provide a timeout feature and a geo distributon 
+The referenced recipe and the default implementation of the @functools.lru_cache don't provide a timeout feature and a geo distribution 
 identification for the generated caches. My solution added these abilities (See `cache.py`).
 
 Once a function is decorated with [@functools.lru_cache](https://github.com/python/cpython/blob/master/Lib/functools.py), it will provide two injected methods:
@@ -74,12 +74,11 @@ retrieving routine and inspecting (cache_info()), the cache timeout is verified 
 updated.
 
 
-### Adding the geo distribution id the cache keys
+### Adding the geo distribution id to the cache keys
 
 `@functools.lru_cache` uses the wrapped function arguments to generate a cache 
 key for each specific set of arguments (Considering the order and type of arguments if typed=True).
-My solution for the geo distributed requirement was to create a timezone based 
-geo distribution cache. 
+My solution for the geo distributed requirement was to create a timezone based cache. 
 
 As distributed servers might be in different timezones, using this information to
 create cache keys (+ the args) makes it possible to have unique keys for different
@@ -105,14 +104,14 @@ method signature to receive the `geo_distributed` flag.
     def _make_key(args, kwds, typed, geo_distributed, tuple=tuple, type=type,
                   len=len):
                   
-    # I also simplified the signature of the original function removing the parameters I don't need
+    # I also simplified the signature of the original function removing parameters I don't need
     
     ```
     
     And for every call of the `make_key` method inside the function wrapper I also 
-    specified that argument. 
+    specified the `geo_distributed` argument. 
 
-3. Updated the `_make_key()` method to add the `time.tzname` tuple to the set of arguments
+3. Then, I updated the `_make_key()` method to add the `time.tzname` tuple to the set of arguments
 before generating the keys:
     
     ```python
@@ -133,7 +132,7 @@ before generating the keys:
 
 Unfortunately, there's a known issue with `functools.lru_cache` where it doesn't work
 when non hashable arguments are passed to the wrapped function.
-However there're are existing solutions for that: https://stackoverflow.com/questions/6358481/using-functools-lru-cache-with-dictionary-arguments/44776960.
+However there are existing solutions for that: https://stackoverflow.com/questions/6358481/using-functools-lru-cache-with-dictionary-arguments/44776960.
 This fix will be mentioned as a pending improvement of my solution.
 
 
@@ -178,7 +177,7 @@ With that, each set of argument will have its unique timeout life cycle.
 
 - Specify a cache key or sufix on the decorator signature.
 
-- Clear cache by cache key or sufix.
+- Clear cache by cache key or suffix.
 
 - [Accept not hashable keyword arguments](https://stackoverflow.com/questions/6358481/using-functools-lru-cache-with-dictionary-arguments/44776960)
 

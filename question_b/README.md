@@ -1,6 +1,6 @@
 ## Question B
 
-In my solution for question B I first verified if the `str` class default  boolean comparision was able to
+In my solution for question B I first verified if the boolean comparision of the native `str` class  was able to
 compare version numbers correctly. Which it demonstrated to be true:
 
 ![str default comparison](https://i.imgur.com/EpK3zXw.png)
